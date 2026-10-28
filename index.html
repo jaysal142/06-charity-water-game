@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Charity Water Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Nav-Bar / Header -->
+    <header>
+      <nav class="nav-bar">
+        <div class="drip-logo">
+          <div class="dot"></div>
+          <p class="nav-title">DRIP</p>
+        </div>
+        <img src="img/cw_logo.png" alt="Charity Water Logo" class="nav-logo" />
+      </nav>
+    </header>
+
+    <!-- Main Page Content -->
+    <main>
+      <!-- Start Screen -->
+      <section class="info-section" id="start-screen">
+        <article class="info-card">
+          <div class="info-left">
+            <p>EVERY DROP ADDS UP</p>
+            <h1 class="info-heading">DRIP</h1>
+            <p class="info-desc">
+              Merge water into Wells. Serve as many communities as possible
+              before the board fills.
+            </p>
+            <button class="button" id="play-btn">Play</button>
+            <button class="button-light" id="how-btn">How to Play</button>
+            <p class="small-print">
+              Inspired by charity: water · Small acts can fund real change.
+            </p>
+          </div>
+          <div class="info-right">
+            <img
+              src="img/water-can-transparent.png"
+              alt="Charity Water: Water Can Icon"
+              class="info-water-can"
+            />
+          </div>
+        </article>
+      </section>
+
+      <!-- How to Play Screen -->
+      <section class="how-section" id="how-screen" hidden>
+        <div class="how-header">
+          <div>
+            <h2>Turn drops into impact.</h2>
+            <p>
+              Two of a kind become something bigger. Build a Well to serve a
+              community.
+            </p>
+          </div>
+          <button class="button-yellow" id="how-start-btn">Start Game</button>
+        </div>
+
+        <p class="label">THE WATER CHAIN</p>
+        <div class="chain-row" id="chain-row"></div>
+
+        <div class="how-steps">
+          <article class="how-step step-blue">
+            <h3>1 · Move to merge</h3>
+            <p>
+              Swipe or use the arrow keys to slide all tiles. Two matching tiles
+              combine into the next tier.
+            </p>
+          </article>
+          <article class="how-step step-yellow">
+            <h3>2 · Build wells</h3>
+            <p>
+              Merge two Tanks into a Well. It leaves the board and serves a
+              community.
+            </p>
+          </article>
+          <article class="how-step step-brown">
+            <h3>3 · Clear contaminants</h3>
+            <p>
+              Contaminants can't merge and cost you points when they appear.
+              Make a match right next to one to wash it away.
+            </p>
+          </article>
+        </div>
+        <p>
+          <strong>Game ends when the board fills up.</strong> Contaminants show
+          up more often the longer you play.
+        </p>
+      </section>
+
+      <!-- Game Screen -->
+      <section class="game-section" id="game-screen" hidden>
+        <div class="game-stats">
+          <div class="stat-card">
+            <p class="label">COMMUNITIES SERVED</p>
+            <p class="stat-num" id="communities">0</p>
+          </div>
+          <div class="stat-card stat-blue">
+            <p class="label">SCORE</p>
+            <p class="stat-num" id="score">0</p>
+          </div>
+          <div class="stat-card stat-light">
+            <p class="label">BEST</p>
+            <p class="stat-num" id="best">0</p>
+          </div>
+          <div class="stat-card stat-warning">
+            <p>⚠️ Contaminant in <span id="contam-count">5</span> moves</p>
+          </div>
+          <div class="stat-card">
+            <p class="label">TIME</p>
+            <p class="stat-num" id="time">0:00</p>
+          </div>
+        </div>
+
+        <div class="game-center">
+          <p class="feedback" id="feedback">Swipe to start merging!</p>
+          <div class="board" id="board"></div>
+          <p class="hint">Use arrow keys or swipe to move all tiles</p>
+          <div class="arrow-buttons">
+            <button class="arrow-btn" data-dir="up" aria-label="Move up">
+              ↑
+            </button>
+            <button class="arrow-btn" data-dir="left" aria-label="Move left">
+              ←
+            </button>
+            <button class="arrow-btn" data-dir="down" aria-label="Move down">
+              ↓
+            </button>
+            <button class="arrow-btn" data-dir="right" aria-label="Move right">
+              →
+            </button>
+          </div>
+          <div class="game-controls">
+            <button class="button" id="reset-btn">Reset</button>
+            <button class="button-light" id="menu-btn">Menu</button>
+          </div>
+        </div>
+
+        <aside class="chain-list">
+          <p class="label">WATER CHAIN</p>
+          <ol id="chain-list"></ol>
+        </aside>
+      </section>
+
+      <!-- Game Over Screen -->
+      <section class="info-section" id="end-screen" hidden>
+        <article class="end-card">
+          <div class="end-left">
+            <p class="label">BOARD FULL · GAME OVER</p>
+            <h2 class="end-title">
+              <span id="end-communities">0</span> communities served.
+            </h2>
+            <div class="end-scores">
+              <div class="stat-card stat-blue">
+                <p class="label">FINAL SCORE</p>
+                <p class="stat-num" id="end-score">0</p>
+              </div>
+              <div class="stat-card stat-light">
+                <p class="label">BEST</p>
+                <p class="stat-num" id="end-best">0</p>
+              </div>
+            </div>
+            <p class="end-note">
+              💧 In Drip, every Well serves a community. In the real world,
+              every donation helps fund lasting clean-water projects.
+            </p>
+            <button class="button" id="play-again-btn">Play Again</button>
+            <button class="button-light" id="end-menu-btn">Menu</button>
+          </div>
+          <div class="end-right">
+            <p class="label yellow">TAKE THE NEXT STEP</p>
+            <h2>Turn play into real-world impact.</h2>
+            <p>
+              Support charity: water and help bring clean, safe water to people
+              around the world.
+            </p>
+            <a
+              class="button-yellow"
+              href="https://www.charitywater.org/donate"
+              target="_blank"
+              rel="noopener"
+              >Donate to charity: water ↗</a
+            >
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <!-- Sitewide Footer -->
+    <footer>
+      <p>&copy; 2026 Jayden Salgado</p>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>
