@@ -3,11 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Charity Water Game</title>
+    <title>Drip · A charity: water game</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
@@ -20,7 +20,7 @@
           <div class="dot"></div>
           <p class="nav-title">DRIP</p>
         </div>
-        <img src="img/cw_logo.png" alt="Charity Water Logo" class="nav-logo" />
+        <img src="img/cw_logo.png" alt="charity: water logo" class="nav-logo" />
       </nav>
     </header>
 
@@ -33,19 +33,31 @@
             <p>EVERY DROP ADDS UP</p>
             <h1 class="info-heading">DRIP</h1>
             <p class="info-desc">
-              Merge water into Wells. Serve as many communities as possible
-              before the board fills.
+              Merge water up the chain to serve communities. Serve as many as
+              you can before the board fills.
             </p>
+            <p class="label">DIFFICULTY</p>
+            <div class="mode-picker">
+              <button class="mode-btn selected" data-mode="easy" aria-pressed="true">
+                Easy
+              </button>
+              <button class="mode-btn" data-mode="normal" aria-pressed="false">
+                Normal
+              </button>
+              <button class="mode-btn" data-mode="hard" aria-pressed="false">
+                Hard
+              </button>
+            </div>
             <button class="button" id="play-btn">Play</button>
             <button class="button-light" id="how-btn">How to Play</button>
             <p class="small-print">
-              Inspired by charity: water · Small acts can fund real change.
+              Made for charity: water · Small acts can fund real change.
             </p>
           </div>
           <div class="info-right">
             <img
               src="img/water-can-transparent.png"
-              alt="Charity Water: Water Can Icon"
+              alt="Yellow charity: water jerry can"
               class="info-water-can"
             />
           </div>
@@ -58,42 +70,63 @@
           <div>
             <h2>Turn drops into impact.</h2>
             <p>
-              Two of a kind become something bigger. Build a Well to serve a
-              community.
+              Two matching tiles merge into the next tier. Build a
+              <span class="top-tier-name">Well</span> to serve a community.
             </p>
           </div>
           <button class="button-yellow" id="how-start-btn">Start Game</button>
         </div>
 
-        <p class="label">THE WATER CHAIN</p>
+        <p class="label">THE WATER CHAIN · <span class="mode-name">EASY</span></p>
         <div class="chain-row" id="chain-row"></div>
 
         <div class="how-steps">
           <article class="how-step step-blue">
-            <h3>1 · Move to merge</h3>
+            <h3>1 · Slide to merge</h3>
             <p>
-              Swipe or use the arrow keys to slide all tiles. Two matching tiles
-              combine into the next tier.
+              Swipe or use the arrow keys to slide every tile. Two matching
+              tiles merge into the next tier.
             </p>
           </article>
           <article class="how-step step-yellow">
-            <h3>2 · Build wells</h3>
+            <h3>2 · Build a <span class="top-tier-name">Well</span></h3>
             <p>
-              Merge two Tanks into a Well. It leaves the board and serves a
-              community.
+              Merge two <span class="pre-top-name">Tank</span>s into a
+              <span class="top-tier-name">Well</span>. It leaves the board and
+              serves a community.
             </p>
           </article>
           <article class="how-step step-brown">
             <h3>3 · Clear contaminants</h3>
             <p>
-              Contaminants can't merge and cost you points when they appear.
-              Make a match right next to one to wash it away.
+              Contaminants can't merge, cost 20 points when they appear and
+              spread to empty neighboring tiles over time. Merge right next to
+              one to wash it away.
             </p>
           </article>
         </div>
+
+        <div class="mode-info">
+          <p class="label">DIFFICULTY</p>
+          <ul>
+            <li>
+              <strong>Easy:</strong> 6-tier chain that ends at the Well.
+              Contaminants spread every <span data-spread="easy">20</span> moves.
+            </li>
+            <li>
+              <strong>Normal:</strong> 7-tier chain with the Water Tower on top.
+              Contaminants spread every <span data-spread="normal">10</span> moves.
+            </li>
+            <li>
+              <strong>Hard:</strong> 7-tier chain with the Water Tower on top.
+              Contaminants spread every <span data-spread="hard">6</span> moves.
+            </li>
+          </ul>
+        </div>
+
         <p>
-          <strong>Game ends when the board fills up.</strong> Contaminants show
-          up more often the longer you play.
+          <strong>The game ends when the board fills up.</strong> Contaminants
+          show up more often the longer you play.
         </p>
       </section>
 
@@ -109,11 +142,17 @@
             <p class="stat-num" id="score">0</p>
           </div>
           <div class="stat-card stat-light">
-            <p class="label">BEST</p>
+            <p class="label">BEST · <span class="mode-name">EASY</span></p>
             <p class="stat-num" id="best">0</p>
           </div>
           <div class="stat-card stat-warning">
-            <p>⚠️ Contaminant in <span id="contam-count">5</span> moves</p>
+            <p class="warning-text">
+              <svg class="inline-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path fill="currentColor" fill-rule="evenodd" d="M12 2.5 1.5 21h21L12 2.5zM11 9h2v6.5h-2zm0 8h2v2h-2z" />
+              </svg>
+              <span>Contaminant in <span id="contam-count">5</span>
+              <span id="contam-unit">moves</span></span>
+            </p>
           </div>
           <div class="stat-card">
             <p class="label">TIME</p>
@@ -123,30 +162,33 @@
 
         <div class="game-center">
           <p class="feedback" id="feedback">Swipe to start merging!</p>
-          <div class="board" id="board"></div>
-          <p class="hint">Use arrow keys or swipe to move all tiles</p>
+          <div class="board" id="board" aria-label="Game board"></div>
+          <p class="hint">Use the arrow keys or swipe to slide every tile</p>
           <div class="arrow-buttons">
-            <button class="arrow-btn" data-dir="up" aria-label="Move up">
+            <button class="arrow-btn" data-dir="up" aria-label="Slide up">
               ↑
             </button>
-            <button class="arrow-btn" data-dir="left" aria-label="Move left">
+            <button class="arrow-btn" data-dir="left" aria-label="Slide left">
               ←
             </button>
-            <button class="arrow-btn" data-dir="down" aria-label="Move down">
+            <button class="arrow-btn" data-dir="down" aria-label="Slide down">
               ↓
             </button>
-            <button class="arrow-btn" data-dir="right" aria-label="Move right">
+            <button class="arrow-btn" data-dir="right" aria-label="Slide right">
               →
             </button>
           </div>
           <div class="game-controls">
-            <button class="button" id="reset-btn">Reset</button>
+            <button class="button" id="reset-btn">Restart</button>
             <button class="button-light" id="menu-btn">Menu</button>
+            <button class="button-light" id="sound-btn" aria-pressed="true">
+              Sound: On
+            </button>
           </div>
         </div>
 
         <aside class="chain-list">
-          <p class="label">WATER CHAIN</p>
+          <p class="label">THE WATER CHAIN</p>
           <ol id="chain-list"></ol>
         </aside>
       </section>
@@ -157,7 +199,8 @@
           <div class="end-left">
             <p class="label">BOARD FULL · GAME OVER</p>
             <h2 class="end-title">
-              <span id="end-communities">0</span> communities served.
+              <span id="end-communities">0</span>
+              <span id="end-communities-word">communities</span> served.
             </h2>
             <div class="end-scores">
               <div class="stat-card stat-blue">
@@ -165,13 +208,14 @@
                 <p class="stat-num" id="end-score">0</p>
               </div>
               <div class="stat-card stat-light">
-                <p class="label">BEST</p>
+                <p class="label">BEST · <span class="mode-name">EASY</span></p>
                 <p class="stat-num" id="end-best">0</p>
               </div>
             </div>
             <p class="end-note">
-              💧 In Drip, every Well serves a community. In the real world,
-              every donation helps fund lasting clean-water projects.
+              In Drip, every <span class="top-tier-name">Well</span> serves a
+              community. In the real world, your donation can help fund clean,
+              safe water projects that last.
             </p>
             <button class="button" id="play-again-btn">Play Again</button>
             <button class="button-light" id="end-menu-btn">Menu</button>
@@ -197,7 +241,22 @@
 
     <!-- Sitewide Footer -->
     <footer>
-      <p>&copy; 2026 Jayden Salgado</p>
+      <nav class="footer-links" aria-label="charity: water links">
+        <a href="https://www.charitywater.org" target="_blank" rel="noopener"
+          >Visit charity: water</a
+        >
+        <a href="https://www.charitywater.org/donate" target="_blank" rel="noopener"
+          >Donate</a
+        >
+        <a
+          href="https://www.charitywater.org/about"
+          target="_blank"
+          rel="noopener"
+          >About their work</a
+        >
+      </nav>
+      <p>Water changes everything.</p>
+      <p class="small-print">&copy; 2026 Jayden Salgado · A student project inspired by charity: water</p>
     </footer>
     <script src="script.js"></script>
   </body>

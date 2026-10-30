@@ -1,21 +1,37 @@
-/* Charity: water Brand Colors */
-
-.inter-heading {
-  font-family: "Inter", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-}
-
+/* charity: water brand colors (Brand Book 2016, pp. 16-17) */
 :root {
-  --primary-light: #ffc907;
-  --primary-dark: #003366;
-  --secondary-light: #77a8bb;
-  --neutral-light: #fff7e1;
-  --neutral-dark: #1a1a1a;
-  --accent-light: #fed8c1;
-  --accent-dark: #bf6c46;
-  --neutral: #cbccd1;
+  /* primary */
+  --cw-yellow: #ffc907;
+  --cw-blue: #2e9df7;
+
+  /* secondary (used sparingly, e.g. confetti) */
+  --cw-teal: #8bd1cb;
+  --cw-green: #4fcb53;
+  --cw-orange: #ff902a;
+  --cw-pink: #f16061;
+
+  /* tints and shades of the brand yellow and blue */
+  --cw-yellow-tint: #ffe78f;
+  --cw-blue-50: #e6f3fe;
+  --cw-blue-200: #cbe7fd;
+  --cw-blue-300: #a1d3fd;
+  --cw-blue-400: #6dbaf9;
+  --cw-blue-700: #206ead;
+  --cw-blue-800: #174f7c;
+
+  /* neutrals (the logo is yellow, black or white) */
+  --black: #1a1a1a;
+  --white: #ffffff;
+  --cream: #fff7e1;
+  --gray: #cbccd1;
+  --gray-text: #555555;
+
+  /* the one off-palette color: contaminants read as dirty water */
+  --dirt: #8c5e3c;
+  --dirt-tint: #d9c3b0;
+
+  /* brand fonts: Proxima Nova, then Avenir. Montserrat is the closest free match */
+  --font: "Montserrat", "Proxima Nova", "Avenir", sans-serif;
 }
 
 /* Basic reset */
@@ -32,9 +48,9 @@
 
 /* General page styles */
 body {
-  background-color: var(--neutral-light);
-  color: var(--neutral-dark);
-  font-family: "Inter", sans-serif;
+  background-color: var(--cream);
+  color: var(--black);
+  font-family: var(--font);
   line-height: 1.6;
 }
 
@@ -48,7 +64,7 @@ body {
 /* Header */
 header {
   align-items: center;
-  color: var(--neutral-dark);
+  color: var(--black);
   display: flex;
   justify-content: space-between;
   padding: 20px;
@@ -64,13 +80,13 @@ header {
 
 /* Navigation links */
 nav a {
-  color: var(--white);
+  color: var(--black);
   margin-left: 15px;
   text-decoration: none;
 }
 
 nav a:hover {
-  color: var(--yellow);
+  color: var(--cw-blue-700);
 }
 
 .drip-logo {
@@ -82,7 +98,7 @@ nav a:hover {
 .dot {
   height: 10px;
   width: 10px;
-  background-color: var(--secondary-light);
+  background-color: var(--cw-blue);
   border-radius: 50%;
   display: inline-block;
   margin-right: 5px;
@@ -94,9 +110,10 @@ nav a:hover {
   margin-right: 10px;
 }
 
+/* brand book p. 13: stacked logo is at least 95px wide on screen */
 .nav-logo {
   height: auto;
-  width: 80px;
+  width: 100px;
 }
 
 /* Main content section */
@@ -107,10 +124,10 @@ main {
 
 /* Buttons */
 .button {
-  background-color: var(--neutral-dark);
+  background-color: var(--black);
   border: none;
   border-radius: 6px;
-  color: var(--neutral-light);
+  color: var(--white);
   cursor: pointer;
   display: inline-block;
   font-size: 1rem;
@@ -121,14 +138,14 @@ main {
 }
 
 .button:hover {
-  background-color: var(--secondary-light);
+  background-color: var(--cw-blue-700);
 }
 
 .button-light {
-  background-color: var(--neutral-light);
+  background-color: var(--cream);
   border: none;
   border-radius: 6px;
-  color: var(--neutral-dark);
+  color: var(--black);
   cursor: pointer;
   display: inline-block;
   font-size: 1rem;
@@ -139,7 +156,44 @@ main {
 }
 
 .button-light:hover {
-  background-color: var(--accent-dark);
+  background-color: var(--white);
+}
+
+/* Difficulty picker */
+.info-left .label {
+  margin-top: 20px;
+}
+
+.mode-picker {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.mode-btn {
+  background-color: var(--white);
+  border: 2px solid var(--black);
+  border-radius: 6px;
+  color: var(--black);
+  font-family: inherit;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 6px 14px;
+}
+
+.mode-btn:hover {
+  background-color: var(--cream);
+}
+
+.mode-btn.selected {
+  background-color: var(--black);
+  color: var(--cw-yellow);
+}
+
+/* buttons don't inherit the page font by default */
+button {
+  font-family: inherit;
 }
 
 /* Card component */
@@ -154,7 +208,7 @@ main {
 
 .info-card {
   display: flex;
-  background-color: var(--primary-light);
+  background-color: var(--cw-yellow);
   border-radius: 8px;
   box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
   width: 100%;
@@ -184,16 +238,16 @@ main {
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.05em;
-  color: #555;
+  color: var(--gray-text);
 }
 
 .label.yellow {
-  color: var(--primary-light);
+  color: var(--cw-yellow);
 }
 
 .info-right {
   display: flex;
-  background-color: var(--neutral-light);
+  background-color: var(--white);
   align-items: center;
   justify-content: center;
 }
@@ -204,10 +258,10 @@ main {
 }
 
 .button-yellow {
-  background-color: var(--primary-light);
+  background-color: var(--cw-yellow);
   border: none;
   border-radius: 6px;
-  color: var(--neutral-dark);
+  color: var(--black);
   cursor: pointer;
   display: inline-block;
   font-size: 1rem;
@@ -239,10 +293,11 @@ main {
 
 .chain-row {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  /* --chain-count is set by showChain() (6 on Easy, 7 on Normal/Hard) */
+  grid-template-columns: repeat(var(--chain-count, 6), minmax(0, 1fr));
   gap: 12px;
   background: #fff;
-  border: 2px dashed var(--neutral);
+  border: 2px dashed var(--gray);
   border-radius: 12px;
   padding: 16px;
   margin: 8px 0 24px;
@@ -262,13 +317,29 @@ main {
 }
 
 .step-blue {
-  background-color: #e0f4fb;
+  background-color: var(--cw-blue-50);
 }
 .step-yellow {
-  background-color: #ffe97a;
+  background-color: var(--cw-yellow-tint);
 }
 .step-brown {
-  background-color: #c4a58f;
+  background-color: var(--dirt-tint);
+}
+
+.mode-info {
+  background: var(--white);
+  border: 2px dashed var(--gray);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+}
+
+.mode-info ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 8px;
 }
 
 /* Game screen layout: stats | board | chain */
@@ -289,23 +360,36 @@ main {
 }
 
 .stat-card {
-  background: #fff;
-  border: 1px solid var(--neutral);
+  background: var(--white);
+  border: 1px solid var(--gray);
   border-radius: 10px;
   padding: 12px 16px;
 }
 
 .stat-blue {
-  background-color: #7dd3f7;
+  background-color: var(--cw-blue-300);
 }
 .stat-light {
-  background-color: #e0f4fb;
+  background-color: var(--cw-blue-50);
 }
 
 .stat-warning {
-  background-color: #ffe97a;
-  border-color: var(--neutral-dark);
+  background-color: var(--cw-yellow-tint);
+  border-color: var(--black);
   font-weight: bold;
+}
+
+.warning-text {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.inline-icon {
+  width: 1.2em;
+  height: 1.2em;
+  flex-shrink: 0;
+  margin-top: 0.15em;
 }
 
 .stat-num {
@@ -322,8 +406,8 @@ main {
 }
 
 .feedback {
-  background-color: var(--neutral-dark);
-  color: #fff;
+  background-color: var(--black);
+  color: var(--white);
   border-radius: 999px;
   padding: 8px 20px;
   font-weight: bold;
@@ -365,40 +449,71 @@ main {
   aspect-ratio: 1;
 }
 
-.tile-icon {
-  font-size: 1.6rem;
-  line-height: 1.2;
+/* flat SVG icons use the tile's text color */
+.tile-svg {
+  width: 1.9rem;
+  height: 1.9rem;
+  margin-bottom: 2px;
 }
 
+.tile-img {
+  height: 1.9rem;
+  width: auto;
+  margin-bottom: 2px;
+}
+
+/* Board tiles show only the icon, so it can be bigger */
+.board .tile-svg {
+  width: 3.2rem;
+  height: 3.2rem;
+  margin-bottom: 0;
+}
+
+.board .tile-img {
+  height: 3.4rem;
+  margin-bottom: 0;
+}
+
+/* the chain gets darker as it climbs, all from the brand blue */
 .tile.empty {
   background-color: #efefea;
 }
-.tier-1 {
-  background-color: #9edcf7;
+.tier-drop {
+  background-color: var(--cw-blue-200);
+  color: var(--black);
 }
-.tier-2 {
-  background-color: #4dc6fc;
+.tier-cup {
+  background-color: var(--cw-blue-300);
+  color: var(--black);
 }
-.tier-3 {
-  background-color: #00a9ef;
+.tier-bucket {
+  background-color: var(--cw-blue-400);
+  color: var(--black);
 }
-.tier-4 {
-  background-color: var(--primary-light);
-  outline: 1px solid var(--neutral-dark);
+.tier-jerry {
+  background-color: var(--black);
+  color: var(--white);
+  outline: 2px solid var(--cw-yellow);
 }
-.tier-5 {
-  background-color: #1e9bd1;
+.tier-tank {
+  background-color: var(--cw-blue);
+  color: var(--black);
 }
-.tier-6 {
-  background-color: #006a9e;
-  color: #fff;
+.tier-well {
+  background-color: var(--cw-blue-700);
+  color: var(--white);
+}
+.tier-tower {
+  background-color: var(--cw-blue-800);
+  color: var(--white);
 }
 .contaminant {
-  background-color: #ad7d5d;
+  background-color: var(--dirt);
+  color: var(--white);
 }
 
 .hint {
-  color: #666;
+  color: var(--gray-text);
 }
 
 .arrow-buttons,
@@ -415,9 +530,9 @@ main {
 .arrow-btn {
   width: 48px;
   height: 48px;
-  border: 1px solid var(--neutral);
+  border: 1px solid var(--gray);
   border-radius: 8px;
-  background: #fff;
+  background: var(--white);
   font-size: 1.3rem;
   cursor: pointer;
 }
@@ -440,6 +555,19 @@ main {
   display: block;
 }
 
+#chain-list .tile-svg {
+  width: 1.3em;
+  height: 1.3em;
+  vertical-align: middle;
+  margin-bottom: 0;
+}
+
+#chain-list .tile-img {
+  height: 1.4em;
+  vertical-align: middle;
+  margin-bottom: 0;
+}
+
 /* Game over screen */
 .end-card {
   display: flex;
@@ -453,14 +581,14 @@ main {
 
 .end-left {
   flex: 2;
-  background: #fff;
+  background: var(--white);
   padding: 48px;
 }
 
 .end-right {
   flex: 1;
-  background-color: var(--neutral-dark);
-  color: #fff;
+  background-color: var(--black);
+  color: var(--white);
   padding: 48px 40px;
   display: flex;
   flex-direction: column;
@@ -485,7 +613,7 @@ main {
 }
 
 .end-note {
-  background-color: #ffe97a;
+  background-color: var(--cw-yellow-tint);
   border-radius: 8px;
   padding: 16px;
   margin-top: 16px;
@@ -534,14 +662,53 @@ main {
   .end-card {
     flex-direction: column;
   }
+
+  .tile-img,
+  .tile-svg {
+    height: 1.6rem;
+  }
+
+  .tile-svg {
+    width: 1.6rem;
+  }
 }
 
 /* Footer */
 footer {
-  color: var(--white);
+  color: var(--gray-text);
   margin-top: 40px;
-  padding: 20px;
+  padding: 32px 20px;
   text-align: center;
+  border-top: 1px solid var(--gray);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 24px;
+}
+
+.footer-links a {
+  color: var(--black);
+  font-weight: 600;
+  margin-left: 0;
+  text-decoration: underline;
+  text-decoration-color: var(--cw-yellow);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 4px;
+}
+
+.footer-links a:hover {
+  color: var(--cw-blue-700);
+}
+
+footer .small-print {
+  margin-top: 0;
 }
 
 /* Simple mobile layout */
@@ -581,8 +748,18 @@ footer {
     font-size: 0.65rem;
   }
 
-  .tile-icon {
-    font-size: 1.2rem;
+  .tile-svg {
+    width: 1.3rem;
+    height: 1.3rem;
+  }
+
+  .board .tile-svg {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+
+  .board .tile-img {
+    height: 2.6rem;
   }
 
   header {
